@@ -32,6 +32,7 @@
 	import {onReachBottom, onPullDownRefresh} from '@dcloudio/uni-app'
 	const pets = ref([])
 	const current = ref(0)
+
 	const classify = [
 		{
 			key: 'all',
@@ -53,7 +54,6 @@
 	function network () {
 		uni.showNavigationBarLoading()
 		uni.request({
-			// url: 'https://api.thecatapi.com/v1/images/search',
 			url: 'https://api.thecatapi.com/v1/images/search',
 			method: 'GET',
 			data: {
