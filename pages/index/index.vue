@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="menu">
-			<uni-segmented-control :current="1" :values="[11, 22, 33]" @clickItem="onClickItem" styleType="button" activeColor="#2b9939"></uni-segmented-control>
+			<uni-segmented-control :current="current" :values="values" @clickItem="onClickItem" styleType="button" activeColor="#2b9939"></uni-segmented-control>
 		</view>
 		<view class="layout">
 			<view class="box" v-for="(item, index) in pets" :key="item.id">
@@ -28,9 +28,28 @@
 </template>
 
 <script setup>
-	import {ref} from 'vue'
+	import {ref, computed} from 'vue'
 	import {onReachBottom, onPullDownRefresh} from '@dcloudio/uni-app'
 	const pets = ref([])
+	const current = ref(0)
+	const classify = [
+		{
+			key: 'all',
+			value: '全部'
+		}, 
+		{
+			key: 'dog',
+			value: '汪星人'
+		},
+		{
+			key: 'cat',
+			value: '喵星人'
+		}
+	]
+	const values = computed(() => classify.map(o => o.value))
+	const onClickItem = (e) => {
+		current.value = e.currentIndex
+	}
 	function network () {
 		uni.showNavigationBarLoading()
 		uni.request({
