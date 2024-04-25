@@ -1,5 +1,8 @@
 <template>
 	<view class="container">
+		<view class="menu">
+			<uni-segmented-control :current="1" :values="[11, 22, 33]" @clickItem="onClickItem" styleType="button" activeColor="#2b9939"></uni-segmented-control>
+		</view>
 		<view class="layout">
 			<view class="box" v-for="(item, index) in pets" :key="item.id">
 				<view class="pic">
@@ -12,11 +15,14 @@
 		</view>
 		<view class="float">
 			<view class="item" @click="onRefresh">
-				刷新
+				<uni-icons type="refreshempty" size="26" color="#888"></uni-icons>
 			</view>
 			<view class="item" @click="onTop">
-				置顶
+				<uni-icons type="arrow-up" size="26" color="#888"></uni-icons>
 			</view>
+		</view>
+		<view class="load-more">
+			<uni-load-more status="loading"></uni-load-more>
 		</view>
 	</view>
 </template>
@@ -78,6 +84,9 @@
 
 <style lang="scss" scoped>
 	.container {
+		.menu {
+			padding: 50rpx 50rpx 0 50rpx;
+		}
 		.layout {
 			padding: 50rpx;
 			.box {
@@ -110,6 +119,9 @@
 				align-items: center;
 				margin-bottom: 20rpx;
 			}
+		}
+		.load-more {
+			padding-bottom: calc(env(safe-area-inset-bottom) + 50rpx);
 		}
 	}
 </style>
